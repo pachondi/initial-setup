@@ -1,4 +1,11 @@
 Pachondi::Application.routes.draw do
+  
+
+  resource :users 
+  resource :user_session, :only => [:destroy, :new, :create]  
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
