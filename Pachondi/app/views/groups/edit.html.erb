@@ -1,0 +1,8 @@
+<h1>Update Groups</h1>
+
+<%= form_for @group, :url => group_path(@group) do |f| %>
+  
+  <%= render :partial => "form", :object => f %>
+  <%#= f.text_field :user_id , :value => "#{@current_user.id}" %><br />
+  <%= f.submit "Update" %>
+<% end %>
