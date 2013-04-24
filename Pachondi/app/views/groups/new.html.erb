@@ -1,0 +1,11 @@
+<h1>Create a new Group for <%= current_user.login %> </h1>
+
+
+<%= form_for @group do |f| %>
+  <% @group.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %> 
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Create" %>
+  
+<% end %>

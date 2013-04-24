@@ -1,0 +1,7 @@
+
+<%= form_for @group, :url => group_path(@group) do |f| %>
+  
+  <%= render :partial => "form", :object => f %>
+  <%= link_to "Back", groups_path %>	
+  <%= link_to "Edit", edit_group_path(@group) %>
+<% end %>

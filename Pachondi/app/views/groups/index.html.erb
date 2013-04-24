@@ -1,0 +1,36 @@
+	<p>
+	You are in Groups index page.
+	This will be the page that will show all groups created, with a search feature.
+	Should automatically hide all closed groups from search.
+	Closed groups should be shown only through invitation link, in which the login user must be authenticated
+	</p>
+	
+	You are logged in as <%=h current_user.login %> <%# current_user is a helper method created in application controller and available in all views. Checks whether we have a user. Suveet%>
+   <table>
+   	<thead>
+   	<tr>
+   		<th>Group Id</th><th>Name</th><th>User Id</th><th>Access</th><th>Active Level</th><th>Description</th><th>Update</th><th>Delete</th>
+   	</tr>
+   	</thead>
+   	<tbody>
+   <% @groups.each do |group| %>
+   	<tr>
+   	<td><%= link_to group.id, group_path(group.id)  %></td> <%# Goes to show action %>
+   	<td><%= group.name  %></td>
+   	<td><%= group.user_id  %></td>
+   	<td><%= group.access  %></td>
+   	<td><%= group.active_level  %></td>
+   	<td><%= group.description  %></td>
+   	<td><%= link_to "Update", edit_group_path(group.id)  %></td> <%# Goes to edit action %>
+   	<td><%= link_to "Delete", group, :method => 'delete'  %></td> 
+   	</tr>
+   <% end %>
+   </tbody>
+   </table>
+
+
+	
+	<br/>
+	To create a new group, click nyah <%= link_to "New Group", new_group_path %>
+	
+	
