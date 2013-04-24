@@ -1,9 +1,22 @@
 Pachondi::Application.routes.draw do
   
+  #get "groups/index"
+  
+  #get "groups/new"
+  
+  #get "groups/update"
 
+  #get "groups/delete"
+  
+  #delete "groups/delete" => "groups#delete"
+  
+  #post "groups/new" => "groups#create"
+
+  #get "groups" => "groups#index"
+  
   resource :users 
   resource :user_session, :only => [:destroy, :new, :create]  
-  
+  resources :groups, :only => [:index, :show, :new, :create, :edit, :update, :destroy] #also need reactivate, deactivate and transfer
   
   
   # The priority is based upon order of creation:
