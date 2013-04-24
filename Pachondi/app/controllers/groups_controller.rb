@@ -1,5 +1,10 @@
 class GroupsController < ApplicationController
   
+  #need to have a user
+  before_filter :require_user
+  
+  #responds only to html now
+  #need to setup json and xml later for ajax requests or other feeds
   respond_to :html
   
   # GET /groups
@@ -21,9 +26,10 @@ class GroupsController < ApplicationController
   
   # POST /groups
   def create
+    params[:group].merge!("user_id" => @current_user.id)
     @group = Group.new(params[:group])
     if @group.save
-      flash[:notice] = "Group created!"
+      flash[:notice] = "Group created! #{params} #{params[:group]}"
       redirect_back_or_default groups_path
     else
       render :action => :new
@@ -40,7 +46,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     
     if @group.update_attributes(params[:group])
-      flash[:notice] = 'Group was successfully updated'
+      flash[:notice] = "Group was successfully updated #{params}"
       respond_with @group, :location => groups_path
     end
     # rails 2 way
@@ -56,6 +62,8 @@ class GroupsController < ApplicationController
   
   #DELETE /groups/:id
   def destroy
+    #Can only deactivate if the group was created by the owner
+    #should only deactivate and not delete the group.  
     Group.find(params[:id]).destroy
     flash[:notice] = "Group Deleted!"
     redirect_back_or_default groups_path
