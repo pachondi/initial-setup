@@ -1,0 +1,16 @@
+<%= form.label :name %><br/>
+<%= form.text_field :name %><br />
+
+<%= form.label :description %><br/>
+<%= form.text_field :description %><br />
+
+<%= form.label :access %><br/>
+<%= form.text_field :access %><br />
+
+<%= form.label :active_level %><br/>
+<%= form.text_field :active_level %><br />
+
+<%#= form.label :user_id %><br />
+
+<%# Can't create group on behalf on any other user. Ownership can only be transferred%>
+<%#= form.text_field :user_id , :value => "#{@current_user.id}" %><br />
